@@ -71,13 +71,14 @@ class _DashboardState extends State<Dashboard> {
                       children: <Widget>[
                         Text(
                           "Movie",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+                          style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           "Discover",
                           style: TextStyle(
                               color: Color.fromRGBO(229, 16, 22, 1),
-                              fontSize: 22),
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold),
                         )
                       ],
                     ),
@@ -97,7 +98,7 @@ class _DashboardState extends State<Dashboard> {
                       "Genres",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 22,
+                          fontSize: 18,
                           fontWeight: FontWeight.w700),
                     ),
                   ),
