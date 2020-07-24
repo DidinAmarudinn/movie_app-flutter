@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:movie_app/models/now_playing_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:movie_app/screens/detail_screen.dart';
 
 class PopularWidget extends StatefulWidget {
   @override
@@ -61,66 +62,78 @@ class _PopularWidgetState extends State<PopularWidget> {
                     return StaggeredTile.count(1, index.isEven ? 1.5 : 1.3);
                   },
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      child: Stack(
-                        children: <Widget>[
-                          Container(
-                            height: double.infinity,
-                            width: double.infinity,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child:CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl:
-                                    "http://image.tmdb.org/t/p/w185"+nowPlyingModel.results[index].posterPath,
-                                errorWidget: (context, url, error) => Center(
-                                  child: Icon(Icons.error),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => DetailScreen(
+                                      id: nowPlyingModel.results[index].id
+                                          .toString(),
+                                    )));
+                      },
+                      child: Container(
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              height: double.infinity,
+                              width: double.infinity,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: "http://image.tmdb.org/t/p/w185" +
+                                      nowPlyingModel.results[index].posterPath,
+                                  errorWidget: (context, url, error) => Center(
+                                    child: Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              height: double.infinity,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Colors.white.withOpacity(0.1),
-                                        Colors.black.withOpacity(0.5)
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight),
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: Align(
-                                alignment: Alignment.bottomRight,
-                                child: Container(
-                                  width: 60,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(8),
-                                        topLeft: Radius.circular(8),
-                                        bottomRight: Radius.circular(12)),
-                                    color: Color.fromRGBO(229, 16, 22, 1),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      nowPlyingModel.results[index].voteAverage
-                                              .toString() +
-                                          " ⭐",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                height: double.infinity,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          Colors.white.withOpacity(0.1),
+                                          Colors.black.withOpacity(0.5)
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Container(
+                                    width: 60,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(8),
+                                          topLeft: Radius.circular(8),
+                                          bottomRight: Radius.circular(12)),
+                                      color: Color.fromRGBO(229, 16, 22, 1),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        nowPlyingModel
+                                                .results[index].voteAverage
+                                                .toString() +
+                                            " ⭐",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },

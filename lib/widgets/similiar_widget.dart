@@ -67,6 +67,8 @@ class _SimiliarWidgetState extends State<SimiliarWidget> {
                             borderRadius: BorderRadius.circular(12),
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
+                              width: 100,
+                              height: 120,
                               imageUrl: "http://image.tmdb.org/t/p/w185" +
                                   nowPlyingModel.results[index].posterPath,
                               errorWidget: (context, url, error) => Center(

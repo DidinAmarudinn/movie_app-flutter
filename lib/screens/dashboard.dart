@@ -81,12 +81,9 @@ class _DashboardState extends State<Dashboard> {
                         )
                       ],
                     ),
-                    Hero(
-                      tag: "imageProfile",
-                                          child: CircleAvatar(
+                    CircleAvatar(
                         backgroundImage: NetworkImage("https://scontent.fcgk3-2.fna.fbcdn.net/v/t1.0-9/51168193_1084901925043296_2991759611486273536_n.jpg?_nc_cat=107&_nc_sid=09cbfe&_nc_eui2=AeE4o7BWBdS0ULImidx-7hhiezNSBGJZKAp7M1IEYlkoCqd7PWzRG-Dm4X4KI2Og8GotCmmY1s8X3sT4i7d3bVaI&_nc_ohc=E9STmO_hKvgAX8GroRz&_nc_ht=scontent.fcgk3-2.fna&oh=e9f7095f29d2b81a170b130c46f1f180&oe=5F3E884C"),
-                      ),
-                    )
+                      )
                   ],
                 ),
               ),
