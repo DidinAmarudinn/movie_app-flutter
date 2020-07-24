@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/models/api_key.dart';
 import 'package:movie_app/models/now_playing_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:movie_app/screens/detail_screen.dart';
@@ -13,9 +14,11 @@ class CarouselWidget extends StatefulWidget {
 class _CarouselWidgetState extends State<CarouselWidget> {
   int current = 0;
   NowPlyingModel nowPlyingModel;
-  var url =
-      "https://api.themoviedb.org/3/movie/now_playing?api_key=9838fcc1b588f75f0490e0b4781facd6&language=id-IDN&page=1";
+  String apikey = ApiKey().getApikey();
   Future<void> getListNowPlaying() async {
+    var url =
+        "https://api.themoviedb.org/3/movie/now_playing?api_key=$apikey&language=id-IDN&page=1";
+
     var res = await http.get(url);
     var decodeJson = jsonDecode(res.body);
     nowPlyingModel = NowPlyingModel.fromJson(decodeJson);

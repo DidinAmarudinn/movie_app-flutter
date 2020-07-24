@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:movie_app/models/api_key.dart';
 import 'package:movie_app/models/now_playing_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:movie_app/screens/detail_screen.dart';
@@ -14,9 +15,11 @@ class PopularWidget extends StatefulWidget {
 
 class _PopularWidgetState extends State<PopularWidget> {
   NowPlyingModel nowPlyingModel;
-  var url =
-      "https://api.themoviedb.org/3/movie/popular?api_key=9838fcc1b588f75f0490e0b4781facd6&language=en-US&page=1";
+  String apiKey=ApiKey().getApikey();
   Future<void> getPopular() async {
+    var url =
+        "https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=en-US&page=1";
+
     var res = await http.get(url);
     var decodeJson = jsonDecode(res.body);
     nowPlyingModel = NowPlyingModel.fromJson(decodeJson);
