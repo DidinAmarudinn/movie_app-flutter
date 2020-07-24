@@ -39,14 +39,14 @@ class _PopularWidgetState extends State<PopularWidget> {
           child: Text(
             "PopularMovie",
             style: TextStyle(
-                color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700),
+                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
           ),
         ),
         SizedBox(
           height: 12,
         ),
         nowPlyingModel == null
-            ? CircularProgressIndicator()
+            ? Center(child: CircularProgressIndicator())
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: StaggeredGridView.countBuilder(

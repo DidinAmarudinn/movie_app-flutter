@@ -19,7 +19,6 @@ class _SimiliarWidgetState extends State<SimiliarWidget> {
     var res = await http.get(url);
     var decodeJson = jsonDecode(res.body);
     nowPlyingModel = NowPlyingModel.fromJson(decodeJson);
-    print(nowPlyingModel.results[1].id);
     setState(() {});
   }
 
